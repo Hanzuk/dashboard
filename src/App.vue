@@ -1,29 +1,40 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+	<div class="wrapper">
+		<div class="sidebar">
+			<router-link to="/">Home</router-link>|
+			<router-link to="/about">About</router-link>
+		</div>
+		<div class="main">
+			<router-view/>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import 'bulma/sass/utilities/_all.sass';
+@import 'bulma/sass/grid/columns.sass';
+@import 'bulma/sass/elements/form.sass';
+
+:root {
+	--sidebar-width: 280px;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.wrapper {
+	display: flex;
+	flex-direction: row-reverse;
+	height: 100vh;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: var(--sidebar-width);
+	background-color: #a18cd1;
+}
+
+.main {
+	width: calc(100% - var(--sidebar-width));
 }
 </style>
