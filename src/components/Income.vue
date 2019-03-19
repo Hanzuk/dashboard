@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<Chart height="300" type="bar" :options="chartOptions" :series="series"/>
-		<p>{{getIncome}}</p>
+		<p v-show="!true">{{ getIncomeDates }}</p>
 	</div>
 </template>
 
 <script>
 import VueApexChart from 'vue-apexcharts';
 import { mapGetters, mapActions } from 'vuex';
-import { BarChart } from '@/config/chartsconfig';
+import { IncomeChart } from '@/config/chartsconfig';
 
 export default {
 	name: 'Income',
@@ -17,29 +17,28 @@ export default {
 	},
 	data() {
 		return {
-			chartOptions: BarChart,
-			series: [{ name: 'Monto', data: [] }]
+			chartOptions: IncomeChart,
+			series: [{ name: 'Ingresos', data: [] }]
 		};
 	},
 	computed: {
-		...mapGetters(['getIncome'])
+		...mapGetters(['getIncomeDates', 'getIncomeData'])
 	},
 	methods: {
-		...mapActions(['fetchIncome', 'filterIndicators'])
+		...mapActions(['fetchIncome'])
 	},
 	created() {
 		this.fetchIncome();
 	},
 	beforeUpdate() {
-		console.log('Actualizado');
 		this.chartOptions = {
 			xaxis: {
-				categories: this.getIncome.map(obj => obj.fecha)
+				categories: this.getIncomeDates
 			}
 		};
 		this.series = [
 			{
-				data: this.getIncome.map(obj => obj.monto)
+				data: this.getIncomeData
 			}
 		];
 	}
