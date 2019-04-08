@@ -1,6 +1,9 @@
 const IncomeChart = {
   chart: {
-    id: 'income-chart',
+    id: 'expenses-chart',
+    toolbar: {
+      show: false
+    },
     defaultLocale: 'es',
     locales: [
       {
@@ -43,16 +46,7 @@ const IncomeChart = {
             'Viernes',
             'Sábado'
           ],
-          shortDays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-          toolbar: {
-            download: 'Download SVG',
-            selection: 'Selection',
-            selectionZoom: 'Selection Zoom',
-            zoomIn: 'Zoom In',
-            zoomOut: 'Zoom Out',
-            pan: 'Panning',
-            reset: 'Reset Zoom'
-          }
+          shortDays: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
         }
       }
     ],
@@ -65,22 +59,51 @@ const IncomeChart = {
   },
   xaxis: {
     categories: [],
-    labels: {
-      formatter: function(value) {
-        let date = new Intl.DateTimeFormat('es-CR', {
-          month: 'long'
-        }).format(new Date(value));
-        return date[0].toUpperCase() + date.slice(1);
-      }
+    tooltip: {
+      enabled: false
     }
   },
   yaxis: {
     labels: {
+      maxWidth: 33,
+      formatter: function(value) {
+        let display = ''
+        switch (value.toString().length) {
+          case 6:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 7:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 8:
+            display = `${value.toString().slice(0, 2)}M`
+            break
+
+          case 9:
+            display = `${value.toString().slice(0, 3)}M`
+            break
+
+          case 10:
+            display = `${value.toString().slice(0, 4)}M`
+            break
+
+          default:
+            display = '0'
+            break
+        }
+        return display
+      }
+    }
+  },
+  tooltip: {
+    y: {
       formatter: function(value) {
         return new Intl.NumberFormat('es-CR', {
           style: 'currency',
           currency: 'CRC'
-        }).format(value);
+        }).format(value)
       }
     }
   },
@@ -103,12 +126,15 @@ const IncomeChart = {
     }
   },
   dataLabels: { enabled: false },
-  colors: ['#3df1aa']
-};
+  colors: ['#e071e0']
+}
 
-const ExpensesChart = {
+const ExpensesByPeriodChart = {
   chart: {
-    id: 'expenses-chart',
+    id: 'income-chart',
+    toolbar: {
+      show: false
+    },
     defaultLocale: 'es',
     locales: [
       {
@@ -177,18 +203,52 @@ const ExpensesChart = {
       formatter: function(value) {
         let date = new Intl.DateTimeFormat('es-CR', {
           month: 'long'
-        }).format(new Date(value));
-        return date[0].toUpperCase() + date.slice(1);
+        }).format(new Date(value))
+        return date[0].toUpperCase() + date.slice(1)
       }
     }
   },
   yaxis: {
     labels: {
+      maxWidth: 30,
+      formatter: function(value) {
+        let display = ''
+        switch (value.toString().length) {
+          case 6:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 7:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 8:
+            display = `${value.toString().slice(0, 2)}M`
+            break
+
+          case 9:
+            display = `${value.toString().slice(0, 3)}M`
+            break
+
+          case 10:
+            display = `${value.toString().slice(0, 4)}M`
+            break
+
+          default:
+            display = '0'
+            break
+        }
+        return display
+      }
+    }
+  },
+  tooltip: {
+    y: {
       formatter: function(value) {
         return new Intl.NumberFormat('es-CR', {
           style: 'currency',
           currency: 'CRC'
-        }).format(value);
+        }).format(value)
       }
     }
   },
@@ -199,24 +259,27 @@ const ExpensesChart = {
       colorStops: [
         {
           offset: 0,
-          color: '#c471f5',
+          color: '#c41432',
           opacity: 1
         },
         {
           offset: 100,
-          color: '#fa71cd',
+          color: '#fc5a44',
           opacity: 1
         }
       ]
     }
   },
   dataLabels: { enabled: false },
-  colors: ['#e071e0']
-};
+  colors: ['#3df1aa']
+}
 
 const UtilityChart = {
   chart: {
     id: 'utility-chart',
+    toolbar: {
+      show: false
+    },
     defaultLocale: 'es',
     locales: [
       {
@@ -279,35 +342,50 @@ const UtilityChart = {
       }
     }
   },
-  labels: [],
   xaxis: {
-    labels: {
-      formatter: function(value) {
-        let months = [
-          'Enero',
-          'Febrero',
-          'Marzo',
-          'Abril',
-          'Mayo',
-          'Junio',
-          'Julio',
-          'Agosto',
-          'Septiembre',
-          'Octubre',
-          'Noviembre',
-          'Diciembre'
-        ];
-        return months[value];
-      }
+    categories: [],
+    tooltip: {
+      enabled: false
     }
   },
   yaxis: {
     labels: {
+      maxWidth: 25,
+      // offsetX: -100,
+      formatter: function(value) {
+        let display = ''
+        switch (value.toString().length) {
+          case 6:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 7:
+            display = `${value.toString().slice(0, 1)}M`
+            break
+
+          case 8:
+            display = `${value.toString().slice(0, 2)}M`
+            break
+
+          case 9:
+            display = `${value.toString().slice(0, 3)}M`
+            break
+
+          default:
+            display = '0'
+            break
+        }
+        return display
+      }
+    }
+  },
+  tooltip: {
+    y: {
       formatter: function(value) {
         return new Intl.NumberFormat('es-CR', {
           style: 'currency',
           currency: 'CRC'
-        }).format(value);
+        }).format(value)
       }
     }
   },
@@ -331,6 +409,119 @@ const UtilityChart = {
   },
   dataLabels: { enabled: false },
   colors: ['#2dcafe']
-};
+}
 
-export { IncomeChart, ExpensesChart, UtilityChart };
+const CustomersChart = {
+  chart: {
+    type: 'radialBar'
+  },
+  plotOptions: {
+    radialBar: {
+      size: 200,
+      offsetY: 70,
+      startAngle: -90,
+      endAngle: 90,
+      track: {
+        background: '#e7e7e7',
+        strokeWidth: '100%',
+        margin: 0
+      },
+      dataLabels: {
+        name: {
+          show: true
+        }
+      }
+    }
+  },
+  fill: {
+    type: 'gradient',
+    gradient: {
+      type: 'horizontal',
+      // Verde: 43e97b y 38f9d7 | Amarillo: f9d423 y ff4e50 | Rojo: c41432 y fc5a44
+      colorStops: [
+        {
+          offset: 0,
+          color: '#c41432',
+          opacity: 1
+        },
+        {
+          offset: 100,
+          color: '#fc5a44',
+          opacity: 1
+        }
+      ]
+    }
+  },
+  labels: ['Sede 1']
+}
+
+const ExpensesByHeadquarterChart = {
+  labels: [],
+  responsive: [
+    {
+      breakpoint: 768,
+      options: {
+        chart: {
+          height: 350
+        },
+        legend: {
+          fontSize: '13px',
+          position: 'bottom',
+          itemMargin: {
+            horizontal: 4,
+            vertical: 6
+          }
+        }
+      }
+    }
+  ],
+  tooltip: {
+    y: {
+      formatter: function(value) {
+        return new Intl.NumberFormat('es-CR', {
+          style: 'currency',
+          currency: 'CRC'
+        }).format(value)
+      }
+    },
+    style: {
+      fontSize: '14px'
+    }
+  },
+  dataLabels: {
+    style: {
+      fontSize: '15px'
+    }
+  },
+  colors: [
+    '#4facfe',
+    '#00f2fe',
+    '#43e97b',
+    '#38f9d7',
+    '#fa709a',
+    '#fee140',
+    '#f093fb',
+    '#f5576c',
+    '#667eea',
+    '#764ba2'
+  ],
+  fill: {
+    type: 'gradient',
+    gradient: {
+      shade: 'light',
+      shadeIntensity: 0.1,
+      inverseColors: false,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 50, 53, 91]
+    }
+  }
+}
+
+export {
+  IncomeChart,
+  ExpensesByPeriodChart,
+  UtilityChart,
+  CustomersChart,
+  ExpensesByHeadquarterChart
+}

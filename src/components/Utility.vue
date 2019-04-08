@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<Chart height="300" type="area" :options="chartOptions" :series="series"/>
-		<p v-show="!true">{{ getUtilityDates }}</p>
+		<p v-show="!true">{{ getUtility }}</p>
 	</div>
 </template>
 
 <script>
-import VueApexChart from 'vue-apexcharts';
-import { mapGetters, mapActions } from 'vuex';
-import { UtilityChart } from '@/config/chartsconfig';
+import VueApexChart from 'vue-apexcharts'
+import { mapGetters, mapActions } from 'vuex'
+import { UtilityChart } from '@/config/chartsconfig'
 
 export default {
 	name: 'Utility',
@@ -19,31 +19,33 @@ export default {
 		return {
 			chartOptions: UtilityChart,
 			series: [{ name: 'Utilidad', data: [] }]
-		};
+		}
 	},
 	computed: {
-		...mapGetters(['getUtilityDates', 'getUtilityData'])
+		...mapGetters(['getUtility'])
 	},
 	methods: {
-		...mapActions(['makeUtility'])
+		...mapActions(['fetchUtility'])
 	},
 	created() {
-		// this.makeUtility();
+		this.fetchUtility()
 	},
 	beforeUpdate() {
 		this.chartOptions = {
-			labels: this.getUtilityDates
-		};
-		// this.chartOptions = {
-		// 	xaxis: {
-		// 		categories: this.getUtilityDates
-		// 	}
-		// };
+			xaxis: {
+				categories: this.getUtility.map(obj => {
+					let date = new Intl.DateTimeFormat('es-CR', {
+						month: 'long'
+					}).format(new Date(obj.date))
+					return date[0].toUpperCase() + date.slice(1)
+				})
+			}
+		}
 		this.series = [
 			{
-				data: this.getUtilityData
+				data: this.getUtility.map(obj => obj.amount)
 			}
-		];
+		]
 	}
-};
+}
 </script>

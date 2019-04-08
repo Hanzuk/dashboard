@@ -1,73 +1,91 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const state = {
   income: [],
-  expenses: [],
-  utility: []
-};
+  expensesByPeriod: [],
+  expensesByHeadquarter: [],
+  utility: [],
+  customers: []
+}
 
 const getters = {
-  getIncomeDates: state => state.income.map(obj => obj.fecha),
-  getIncomeData: state => state.income.map(obj => obj.monto),
-  getExpensesDates: state => state.expenses.map(obj => obj.fecha),
-  getExpensesData: state => state.expenses.map(obj => obj.monto * -1),
-  getUtilityDates: state => state.utility.map(obj => obj.fecha),
-  getUtilityData: state => state.utility.map(obj => obj.utilidad)
-};
+  getIncome: state => state.income,
+  getExpensesByPeriod: state => state.expensesByPeriod,
+  getExpensesByHeadquarter: state => state.expensesByHeadquarter,
+  getUtility: state => state.utility
+}
 
 const actions = {
+  // Trae los ingresos para cada mes del año
   async fetchIncome({ commit }) {
     const response = await axios.get(
-      `http://localhost:3000/api/ingresos/${new Date().getFullYear()}/all`
-    );
-    commit('setIncome', response.data);
+      `https://gymnation.herokuapp.com/api/ingresos/periodo/${new Date().getFullYear()}`
+    )
+    commit('setIncome', response.data)
   },
-  async fetchExpenses({ commit }) {
+
+  // Trae las gastos para cada mes del año
+  async fetchExpensesByPeriod({ commit }) {
     const response = await axios.get(
-      `http://localhost:3000/api/gastos/${new Date().getFullYear()}/all`
-    );
-    commit('setExpenses', response.data);
-    await commit('setUtility');
+      `https://gymnation.herokuapp.com/api/gastos/periodo/${new Date().getFullYear()}`
+    )
+    commit('setExpensesByPeriod', response.data)
   },
-  makeUtility({ commit }) {
-    commit('setUtility');
+
+  // Trae las gastos para cada sede
+  async fetchExpensesByHeadquarter({ commit }) {
+    const response = await axios.get(
+      'https://gymnation.herokuapp.com/api/gastos/sede/all'
+    )
+    commit('setExpensesByHeadquarter', response.data)
   },
-  // Filter all indicators
+
+  // Trae las utilidades para cada mes del año
+  async fetchUtility({ commit }) {
+    const response = await axios.get(
+      `https://gymnation.herokuapp.com/api/utilidad/periodo/${new Date().getFullYear()}`
+    )
+    commit('setUtility', response.data)
+  },
+
+  // Filtra los indicadores de Ingresos, Gastos y Utilidad
   async filterIndicators({ commit }, e) {
     // Get selected number
     const limit = parseInt(
       e.target.options[e.target.options.selectedIndex].innerText
-    );
+    )
+
+    // Ingresos
     const incomeResponse = await axios.get(
-      `http://localhost:3000/api/ingresos/${limit}/all`
-    );
-    const expensesResponse = await axios.get(
-      `http://localhost:3000/api/gastos/${limit}/all`
-    );
-    commit('setIncome', incomeResponse.data);
-    commit('setExpenses', expensesResponse.data);
-    await commit('setUtility');
+      `https://gymnation.herokuapp.com/api/ingresos/periodo/${limit}`
+    )
+
+    // Gastos por año
+    const expensesByPeriodResponse = await axios.get(
+      `https://gymnation.herokuapp.com/api/gastos/periodo/${limit}`
+    )
+
+    // Utilidad
+    const utilityResponse = await axios.get(
+      `https://gymnation.herokuapp.com/api/utilidad/periodo/${limit}`
+    )
+    commit('setIncome', incomeResponse.data)
+    commit('setExpensesByPeriod', expensesByPeriodResponse.data)
+    commit('setUtility', utilityResponse.data)
   }
-};
+}
 
 const mutations = {
   setIncome: (state, income) => (state.income = income),
-  setExpenses: (state, expenses) => (state.expenses = expenses),
-  setUtility: state => {
-    let utility = [];
-    for (let i = 0; i < state.income.length; i++) {
-      utility.push({
-        utilidad: state.income[i].monto - state.expenses[i].monto,
-        fecha: new Date(state.income[i].fecha).getMonth()
-      });
-    }
-    state.utility = utility;
-  }
-};
+  setExpensesByPeriod: (state, expenses) => (state.expensesByPeriod = expenses),
+  setExpensesByHeadquarter: (state, expenses) =>
+    (state.expensesByHeadquarter = expenses),
+  setUtility: (state, utility) => (state.utility = utility)
+}
 
 export default {
   state,
   getters,
   actions,
   mutations
-};
+}
