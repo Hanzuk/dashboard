@@ -413,46 +413,17 @@ const UtilityChart = {
 
 const CustomersChart = {
   chart: {
+    height: 350,
     type: 'radialBar'
   },
   plotOptions: {
     radialBar: {
-      size: 200,
-      offsetY: 70,
-      startAngle: -90,
-      endAngle: 90,
-      track: {
-        background: '#e7e7e7',
-        strokeWidth: '100%',
-        margin: 0
-      },
-      dataLabels: {
-        name: {
-          show: true
-        }
+      hollow: {
+        size: '70%'
       }
     }
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      type: 'horizontal',
-      // Verde: 43e97b y 38f9d7 | Amarillo: f9d423 y ff4e50 | Rojo: c41432 y fc5a44
-      colorStops: [
-        {
-          offset: 0,
-          color: '#c41432',
-          opacity: 1
-        },
-        {
-          offset: 100,
-          color: '#fc5a44',
-          opacity: 1
-        }
-      ]
-    }
-  },
-  labels: ['Sede 1']
+  labels: []
 }
 
 const ExpensesByHeadquarterChart = {
@@ -517,7 +488,7 @@ const ExpensesByHeadquarterChart = {
     }
   }
 }
-
+// Verde: 43e97b y 38f9d7 | Amarillo: f9d423 y ff4e50 | Rojo: c41432 y fc5a44
 export {
   IncomeChart,
   ExpensesByPeriodChart,

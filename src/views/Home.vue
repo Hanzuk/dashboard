@@ -98,9 +98,7 @@ export default {
       let date = new Intl.DateTimeFormat('es-CR', {
         year: 'numeric',
         month: 'long'
-        // day: 'numeric'
       }).format(new Date())
-      console.log(date)
       return date[0].toUpperCase() + date.slice(1)
     }
   }
