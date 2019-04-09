@@ -1,13 +1,13 @@
 <template>
-  <div class="main" id="main">
+  <div class="main" v-bind:class="{ 'main-opened': getMenuOpened }">
     <div class="header">
       <div class="columns is-mobile is-vcentered is-marginless">
         <div class="column is-2-desktop">
           <div class="title-wrapper">
             <div
               class="is-hidden-desktop hamburger"
-              @click="open"
-              v-bind:class="{ toggled: isActive }"
+              @click="toggleMenu"
+              v-bind:class="{ toggled: getMenuOpened }"
             >
               <div class="hamburger-bar bar-1"></div>
               <div class="hamburger-bar bar-2"></div>
@@ -33,31 +33,14 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  data() {
-    return {
-      isActive: false
-    }
+  computed: {
+    ...mapGetters(['getMenuOpened'])
   },
   methods: {
-    getDate() {
-      let date = new Intl.DateTimeFormat('es-CR', {
-        year: 'numeric',
-        month: 'long'
-      }).format(new Date())
-      return date[0].toUpperCase() + date.slice(1)
-    },
-    open() {
-      if (this.isActive) {
-        this.isActive = !this.isActive
-        document.getElementById('sidebar').classList.remove('sidebar-opened')
-        document.getElementById('main').classList.remove('main-opened')
-      } else {
-        this.isActive = !this.isActive
-        document.getElementById('sidebar').classList.add('sidebar-opened')
-        document.getElementById('main').classList.add('main-opened')
-      }
-    }
+    ...mapActions(['toggleMenu'])
   }
 }
 </script>

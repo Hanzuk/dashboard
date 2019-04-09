@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" v-bind:class="{ 'sidebar-opened': getMenuOpened }">
     <div class="sidebar-top">
       <div class="sidebar-header">
         <p
@@ -12,12 +12,20 @@
       <div class="sidebar-content">
         <ul>
           <li>
-            <router-link to="/" class="is-size-6-desktop">
+            <router-link
+              to="/"
+              class="is-size-6-desktop"
+              @click.native="toggleMenu"
+            >
               <i class="fas fa-tachometer-alt"></i>Home
             </router-link>
           </li>
           <li>
-            <router-link to="/about" class="is-size-6-desktop">
+            <router-link
+              to="/about"
+              class="is-size-6-desktop"
+              @click.native="toggleMenu"
+            >
               <i class="fas fa-info-circle"></i>About
             </router-link>
           </li>
@@ -36,3 +44,16 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['getMenuOpened'])
+  },
+  methods: {
+    ...mapActions(['toggleMenu'])
+  }
+}
+</script>

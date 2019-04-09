@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select is-rounded is-small is-fullwidth"
+    class="select is-rounded is-small is-pulled-right"
     @change="filterCustomers($event)"
   >
     <select>

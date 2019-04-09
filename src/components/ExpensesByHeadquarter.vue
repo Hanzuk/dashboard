@@ -20,18 +20,22 @@ export default {
         chart: { id: 'expensesbyheadquarter-chart' },
         responsive: [
           {
+            breakpoint: 576,
+            options: {
+              legend: { show: false }
+            }
+          },
+          {
             breakpoint: 768,
             options: {
-              chart: {
-                height: 270
-              }
+              legend: { show: true }
             }
           }
         ],
         labels: [],
         tooltip: {
           y: {
-            formatter: function(value) {
+            formatter: value => {
               return new Intl.NumberFormat('es-CR', {
                 style: 'currency',
                 currency: 'CRC'

@@ -160,7 +160,7 @@ body {
   font-weight: 300;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   body {
     overflow-x: hidden;
   }

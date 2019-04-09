@@ -1,13 +1,13 @@
 <template>
-  <div class="main" id="main">
+  <div class="main" v-bind:class="{ 'main-opened': getMenuOpened }">
     <div class="header">
       <div class="columns is-mobile is-vcentered is-marginless">
         <div class="column is-2-desktop">
           <div class="title-wrapper">
             <div
               class="is-hidden-desktop hamburger"
-              @click="open"
-              v-bind:class="{ toggled: isActive }"
+              @click="toggleMenu"
+              v-bind:class="{ toggled: getMenuOpened }"
             >
               <div class="hamburger-bar bar-1"></div>
               <div class="hamburger-bar bar-2"></div>
@@ -52,12 +52,10 @@
       <div class="columns is-marginless">
         <div class="column is-half">
           <div class="box">
-            <div class="columns is-marginless">
+            <div class="columns is-mobile is-marginless">
               <div class="column is-paddingless">
-                <p class="box-title is-size-5-desktop">
-                  Crecimiento clientes por sede
-                </p>
-                <p class="box-subtitle is-size-7">Meta: 6800 | Mínimo: 4000</p>
+                <p class="box-title is-size-5-desktop">Clientes por sede</p>
+                <p class="box-subtitle is-size-7">Mínimo: 4000 | Meta: 6800</p>
               </div>
               <div class="column is-3-desktop is-paddingless">
                 <FilterCustomers />
@@ -91,6 +89,7 @@ import ExpensesByPeriod from '@/components/ExpensesByPeriod.vue'
 import Utility from '@/components/Utility.vue'
 import Customers from '@/components/Customers.vue'
 import ExpensesByHeadquarter from '@/components/ExpensesByHeadquarter.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'home',
@@ -103,29 +102,17 @@ export default {
     Customers,
     ExpensesByHeadquarter
   },
-  data() {
-    return {
-      isActive: false
-    }
+  computed: {
+    ...mapGetters(['getMenuOpened'])
   },
   methods: {
+    ...mapActions(['toggleMenu']),
     getDate() {
       let date = new Intl.DateTimeFormat('es-CR', {
         year: 'numeric',
         month: 'long'
       }).format(new Date())
       return date[0].toUpperCase() + date.slice(1)
-    },
-    open() {
-      if (this.isActive) {
-        this.isActive = !this.isActive
-        document.getElementById('sidebar').classList.remove('sidebar-opened')
-        document.getElementById('main').classList.remove('main-opened')
-      } else {
-        this.isActive = !this.isActive
-        document.getElementById('sidebar').classList.add('sidebar-opened')
-        document.getElementById('main').classList.add('main-opened')
-      }
     }
   }
 }

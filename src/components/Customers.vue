@@ -1,7 +1,7 @@
 <template>
   <div>
     <Chart
-      height="294"
+      height="300"
       type="radialBar"
       :options="chartOptions"
       :series="series"
