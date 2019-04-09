@@ -18,6 +18,16 @@ export default {
     return {
       chartOptions: {
         chart: { id: 'expensesbyheadquarter-chart' },
+        responsive: [
+          {
+            breakpoint: 768,
+            options: {
+              chart: {
+                height: 270
+              }
+            }
+          }
+        ],
         labels: [],
         tooltip: {
           y: {

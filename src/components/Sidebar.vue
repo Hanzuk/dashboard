@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-top">
       <div class="sidebar-header">
         <p
@@ -12,12 +12,12 @@
       <div class="sidebar-content">
         <ul>
           <li>
-            <router-link to="/" class="has-text-white is-size-6-desktop">
+            <router-link to="/" class="is-size-6-desktop">
               <i class="fas fa-tachometer-alt"></i>Home
             </router-link>
           </li>
           <li>
-            <router-link to="/about" class="has-text-white is-size-6-desktop">
+            <router-link to="/about" class="is-size-6-desktop">
               <i class="fas fa-info-circle"></i>About
             </router-link>
           </li>

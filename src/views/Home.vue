@@ -1,19 +1,23 @@
 <template>
-  <div class="main">
+  <div class="main" id="main">
     <div class="header">
       <div class="columns is-mobile is-vcentered is-marginless">
         <div class="column is-2-desktop">
           <div class="title-wrapper">
-            <button class="is-hidden-desktop hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+            <div
+              class="is-hidden-desktop hamburger"
+              @click="open"
+              v-bind:class="{ toggled: isActive }"
+            >
+              <div class="hamburger-bar bar-1"></div>
+              <div class="hamburger-bar bar-2"></div>
+              <div class="hamburger-bar bar-3"></div>
+            </div>
             <p class="is-size-5-mobile is-size-4-desktop">Dashboard</p>
           </div>
         </div>
-        <div class="column is-2-desktop">
-          <div class="control is-expanded">
+        <div class="column is-4-mobile is-2-desktop">
+          <div class="control">
             <FilterIndicators />
           </div>
         </div>
@@ -99,6 +103,11 @@ export default {
     Customers,
     ExpensesByHeadquarter
   },
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     getDate() {
       let date = new Intl.DateTimeFormat('es-CR', {
@@ -106,6 +115,17 @@ export default {
         month: 'long'
       }).format(new Date())
       return date[0].toUpperCase() + date.slice(1)
+    },
+    open() {
+      if (this.isActive) {
+        this.isActive = !this.isActive
+        document.getElementById('sidebar').classList.remove('sidebar-opened')
+        document.getElementById('main').classList.remove('main-opened')
+      } else {
+        this.isActive = !this.isActive
+        document.getElementById('sidebar').classList.add('sidebar-opened')
+        document.getElementById('main').classList.add('main-opened')
+      }
     }
   }
 }

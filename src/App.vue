@@ -24,6 +24,13 @@ export default {
 
 :root {
   --sidebar-width: 250px;
+  --sidebar-bg: #1b2433;
+  --background: #e3e9ed;
+  --box-bg: #ffffff;
+}
+
+html {
+  background-color: var(--background);
 }
 
 body {
@@ -37,6 +44,9 @@ body {
 
 .header {
   font-weight: 300;
+  margin-bottom: 20px;
+  background-color: var(--box-bg);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
 }
 
 .sidebar {
@@ -48,9 +58,9 @@ body {
   height: 100%;
   width: var(--sidebar-width);
   z-index: 100;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: var(--sidebar-bg);
 
-  & .sidebar-top {
+  .sidebar-top {
     margin-top: 15px;
   }
 
@@ -58,31 +68,35 @@ body {
     font-weight: 700;
   }
 
-  & .sidebar-divider {
+  .sidebar-divider {
     height: 1px;
     margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 5px;
-    background-color: rgba(#fff, 0.2);
+    border: none;
+    background-color: rgba(#ffffff, 0.2);
   }
 
-  & .sidebar-content {
-    & li {
+  .sidebar-content {
+    li {
       padding: 2px 10px;
 
-      & a {
+      a {
         display: block;
         padding: 10px;
         border-radius: 6px;
         font-weight: 300;
         text-decoration: none;
-        color: rgba(#fff, 1);
+        color: rgba(#fff, 0.5);
+        transition: color 0.4s ease-in-out;
 
-        & i {
+        i {
           margin-right: 10px;
           color: rgba(#fff, 0.5);
+          transition: color 0.4s ease-in-out;
         }
+
         &:hover,
         &:hover i {
           color: rgba(#fff, 1);
@@ -105,21 +119,35 @@ body {
 .hamburger {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 25px;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
   width: 25px;
   margin-right: 11px;
-  padding: 1px;
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
-  background-color: rgba(#fff, 0);
 
-  & span {
-    height: 2px;
+  .hamburger-bar {
+    position: relative;
     width: 100%;
-    margin: 1px 0;
-    background-color: #000;
+    height: 2px;
+    background-color: #1b2433;
+    border-radius: 6px;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+.toggled {
+  .bar-1 {
+    top: 9px;
+    transform: rotate(135deg);
+  }
+  .bar-2 {
+    transition: all 0s ease-in-out;
+    opacity: 0;
+  }
+  .bar-3 {
+    bottom: 9px;
+    transform: rotate(-135deg);
   }
 }
 
@@ -133,12 +161,26 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .sidebar {
+    transition: transform 0.4s ease-in-out;
     transform: translateX(calc(var(--sidebar-width) * -1));
+  }
+
+  .sidebar-opened {
+    transform: translateX(0);
+  }
+
+  .main-opened {
+    transform: translateX(var(--sidebar-width));
   }
 
   .main {
     width: 100%;
+    transition: transform 0.4s ease-in-out;
   }
 }
 </style>

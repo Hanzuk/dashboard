@@ -1,5 +1,8 @@
 <template>
-  <div class="select is-rounded is-fullwidth" @change="filterCustomers($event)">
+  <div
+    class="select is-rounded is-small is-fullwidth"
+    @change="filterCustomers($event)"
+  >
     <select>
       <option value="1">Sede 1</option>
       <option value="2">Sede 2</option>
