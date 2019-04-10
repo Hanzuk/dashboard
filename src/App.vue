@@ -21,6 +21,8 @@ export default {
 @import 'bulma/sass/grid/columns.sass';
 @import 'bulma/sass/elements/form.sass';
 @import 'bulma/sass/elements/box.sass';
+@import 'bulma/sass/elements/table.sass';
+@import 'bulma/sass/elements/title.sass';
 
 :root {
   --sidebar-width: 250px;
@@ -155,7 +157,10 @@ body {
   padding-left: 0;
 }
 
-.box-title,
+.box-title {
+  font-weight: 400;
+}
+
 .box-subtitle {
   font-weight: 300;
 }

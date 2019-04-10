@@ -30,13 +30,13 @@
       <div class="columns is-marginless">
         <div class="column">
           <div class="box">
-            <p class="box-title is-size-5-desktop">Ingresos</p>
+            <p class="box-title is-size-5-mobile is-size-4-desktop">Ingresos</p>
             <Income />
           </div>
         </div>
         <div class="column">
           <div class="box">
-            <p class="box-title is-size-5-desktop">Gastos</p>
+            <p class="box-title is-size-5-mobile is-size-4-desktop">Gastos</p>
             <ExpensesByPeriod />
           </div>
         </div>
@@ -44,7 +44,7 @@
       <div class="columns is-marginless">
         <div class="column">
           <div class="box">
-            <p class="box-title is-size-5-desktop">Utilidad</p>
+            <p class="box-title is-size-5-mobile is-size-4-desktop">Utilidad</p>
             <Utility />
           </div>
         </div>
@@ -54,7 +54,9 @@
           <div class="box">
             <div class="columns is-mobile is-marginless">
               <div class="column is-paddingless">
-                <p class="box-title is-size-5-desktop">Clientes por sede</p>
+                <p class="box-title is-size-5-mobile is-size-4-desktop">
+                  Clientes por sede
+                </p>
                 <p class="box-subtitle is-size-7">Mínimo: 4000 | Meta: 6800</p>
               </div>
               <div class="column is-3-desktop is-paddingless">
@@ -68,7 +70,9 @@
           <div class="box">
             <div class="columns is-marginless">
               <div class="column is-paddingless">
-                <p class="box-title is-size-5-desktop">Gastos por sede</p>
+                <p class="box-title is-size-5-mobile is-size-4-desktop">
+                  Gastos por sede
+                </p>
                 <p class="box-subtitle is-size-7">Gastos totales a la fecha</p>
               </div>
             </div>
