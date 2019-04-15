@@ -44,7 +44,21 @@ export default {
           },
           style: { fontSize: '14px' }
         },
-        dataLabels: { style: { fontSize: '15px' } }
+        dataLabels: { style: { fontSize: '15px' } },
+        colors: [
+          '#67b7dc',
+          '#6794dc',
+          '#6771dc',
+          '#8067dc',
+          '#a367dc',
+          '#c767dc',
+          '#dc67ce',
+          '#dc67ab',
+          '#dc6788',
+          '#dc6967',
+          '#dc8c67',
+          '#dcaf67'
+        ]
       },
       series: []
     }
@@ -64,7 +78,7 @@ export default {
         obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
       )
     }
-    this.series = this.getExpensesByHeadquarter.map(obj => obj.amount * -1)
+    this.series = this.getExpensesByHeadquarter.map(obj => obj.amount)
   }
 }
 </script>

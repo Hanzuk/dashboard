@@ -66,25 +66,12 @@ export default {
           }
         },
         fill: {
-          type: 'gradient',
-          gradient: {
-            type: 'vertical',
-            colorStops: [
-              {
-                offset: 0,
-                color: '#4facfe',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#00f2fe',
-                opacity: 1
-              }
-            ]
-          }
+          colors: ['#8067dc'],
+          type: 'solid',
+          opacity: 0.7
         },
         dataLabels: { enabled: false },
-        colors: ['#2dcafe']
+        colors: ['#8067dc']
       },
       series: [{ name: 'Utilidad', data: [] }]
     }
@@ -103,7 +90,7 @@ export default {
       xaxis: {
         categories: this.getUtility.map(obj => {
           let date = new Intl.DateTimeFormat('es-CR', {
-            month: 'long'
+            month: 'short'
           }).format(new Date(obj.date))
           return date[0].toUpperCase() + date.slice(1)
         })

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart height="300" type="line" :options="chartOptions" :series="series" />
+    <Chart height="300" type="bar" :options="chartOptions" :series="series" />
     <p v-show="!true">{{ getIncome }}</p>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          id: 'income-chart',
+          id: 'expensesbyperiod-chart',
           toolbar: { show: false },
           animations: {
             dynamicAnimation: {
@@ -28,8 +28,7 @@ export default {
           }
         },
         xaxis: {
-          categories: [],
-          tooltip: { enabled: false }
+          categories: []
         },
         yaxis: {
           labels: {
@@ -71,26 +70,24 @@ export default {
             }
           }
         },
-        fill: {
-          type: 'gradient',
-          gradient: {
-            type: 'vertical',
-            colorStops: [
-              {
-                offset: 0,
-                color: '#43e97b',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#38f9d7',
-                opacity: 1
-              }
-            ]
-          }
-        },
         dataLabels: { enabled: false },
-        colors: ['#42eb86']
+        colors: [
+          '#67b7dc',
+          '#6794dc',
+          '#6771dc',
+          '#8067dc',
+          '#a367dc',
+          '#c767dc',
+          '#dc67ce',
+          '#dc67ab',
+          '#dc6788',
+          '#dc6967',
+          '#dc8c67',
+          '#dcaf67'
+        ],
+        plotOptions: {
+          bar: { distributed: true }
+        }
       },
       series: [{ name: 'Ingresos', data: [] }]
     }
@@ -109,7 +106,7 @@ export default {
       xaxis: {
         categories: this.getIncome.map(obj => {
           let date = new Intl.DateTimeFormat('es-CR', {
-            month: 'long'
+            month: 'short'
           }).format(new Date(obj.date))
           return date[0].toUpperCase() + date.slice(1)
         })

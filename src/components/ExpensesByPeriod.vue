@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Chart height="300" type="bar" :options="chartOptions" :series="series" />
+    <Chart height="300" type="line" :options="chartOptions" :series="series" />
     <p v-show="!true">{{ getExpensesByPeriod }}</p>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          id: 'expensesbyperiod-chart',
+          id: 'income-chart',
           toolbar: { show: false },
           animations: {
             dynamicAnimation: {
@@ -28,7 +28,8 @@ export default {
           }
         },
         xaxis: {
-          categories: []
+          categories: [],
+          tooltip: { enabled: false }
         },
         yaxis: {
           labels: {
@@ -70,26 +71,8 @@ export default {
             }
           }
         },
-        fill: {
-          type: 'gradient',
-          gradient: {
-            type: 'vertical',
-            colorStops: [
-              {
-                offset: 0,
-                color: '#c41432',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#fc5a44',
-                opacity: 1
-              }
-            ]
-          }
-        },
         dataLabels: { enabled: false },
-        colors: ['#df353b']
+        colors: ['#dc6788']
       },
       series: [{ name: 'Gastos', data: [] }]
     }
@@ -108,7 +91,7 @@ export default {
       xaxis: {
         categories: this.getExpensesByPeriod.map(obj => {
           let date = new Intl.DateTimeFormat('es-CR', {
-            month: 'long'
+            month: 'short'
           }).format(new Date(obj.date))
           return date[0].toUpperCase() + date.slice(1)
         })
@@ -116,7 +99,7 @@ export default {
     }
     this.series = [
       {
-        data: this.getExpensesByPeriod.map(obj => obj.amount * -1)
+        data: this.getExpensesByPeriod.map(obj => obj.amount)
       }
     ]
   }

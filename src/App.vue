@@ -26,7 +26,7 @@ export default {
 
 :root {
   --sidebar-width: 250px;
-  --sidebar-bg: #1b2433;
+  --sidebar-bg: #243044;
   --background: #e3e9ed;
   --box-bg: #ffffff;
 }
@@ -90,6 +90,7 @@ body {
         border-radius: 6px;
         font-weight: 300;
         text-decoration: none;
+        outline: none;
         color: rgba(#fff, 0.5);
         transition: color 0.4s ease-in-out;
 

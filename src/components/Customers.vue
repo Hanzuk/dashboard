@@ -36,25 +36,7 @@ export default {
             }
           }
         },
-        labels: ['Sede 01'],
-        fill: {
-          type: 'gradient',
-          gradient: {
-            type: 'vertical',
-            colorStops: [
-              {
-                offset: 0,
-                color: '#c41432',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#fc5a44',
-                opacity: 1
-              }
-            ]
-          }
-        }
+        labels: ['Sede 01']
       },
       series: [0]
     }
@@ -74,22 +56,7 @@ export default {
         labels: this.getCustomers.map(
           obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
         ),
-        fill: {
-          gradient: {
-            colorStops: [
-              {
-                offset: 0,
-                color: '#43e97b',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#38f9d7',
-                opacity: 1
-              }
-            ]
-          }
-        }
+        colors: ['#67b7dc']
       }
     }
 
@@ -101,22 +68,7 @@ export default {
         labels: this.getCustomers.map(
           obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
         ),
-        fill: {
-          gradient: {
-            colorStops: [
-              {
-                offset: 0,
-                color: '#f9d423',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#ff4e50',
-                opacity: 1
-              }
-            ]
-          }
-        }
+        colors: ['#dcaf67']
       }
     }
 
@@ -125,22 +77,7 @@ export default {
         labels: this.getCustomers.map(
           obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
         ),
-        fill: {
-          gradient: {
-            colorStops: [
-              {
-                offset: 0,
-                color: '#c41432',
-                opacity: 1
-              },
-              {
-                offset: 100,
-                color: '#fc5a44',
-                opacity: 1
-              }
-            ]
-          }
-        }
+        colors: ['#dc6967']
       }
     }
 
