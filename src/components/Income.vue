@@ -70,6 +70,11 @@ export default {
             }
           }
         },
+        grid: {
+          xaxis: {
+            lines: { show: true }
+          }
+        },
         dataLabels: { enabled: false },
         colors: [
           '#67b7dc',
@@ -85,6 +90,10 @@ export default {
           '#dc8c67',
           '#dcaf67'
         ],
+        fill: {
+          type: 'solid',
+          opacity: 1
+        },
         plotOptions: {
           bar: { distributed: true }
         }

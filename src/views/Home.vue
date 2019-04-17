@@ -57,7 +57,7 @@
                 <p class="box-title is-size-5-mobile is-size-4-desktop">
                   Clientes por sede
                 </p>
-                <p class="box-subtitle is-size-7">Mínimo: 4000 | Meta: 6800</p>
+                <p class="box-subtitle is-size-7">Mínimo: 5000 | Meta: 9000</p>
               </div>
               <div class="column is-3-desktop is-paddingless">
                 <FilterCustomers />

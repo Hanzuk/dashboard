@@ -61,6 +61,11 @@ export default {
             }
           }
         },
+        grid: {
+          xaxis: {
+            lines: { show: true }
+          }
+        },
         tooltip: {
           y: {
             formatter: value => {

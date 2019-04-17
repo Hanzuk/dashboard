@@ -68,7 +68,7 @@ export default {
         fill: {
           colors: ['#8067dc'],
           type: 'solid',
-          opacity: 0.7
+          opacity: 0.9
         },
         dataLabels: { enabled: false },
         colors: ['#8067dc']

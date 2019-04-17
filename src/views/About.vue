@@ -53,7 +53,7 @@
               <div class="column is-half">
                 <div class="columns is-multiline is-marginless">
                   <div class="column is-full">
-                    <h1>Servicio</h1>
+                    <h1 class="is-size-5">Servicio</h1>
                   </div>
                   <div class="column flex-sb">
                     <p class="font-light">MongoDB Atlas</p>
@@ -76,7 +76,7 @@
               <div class="column is-half">
                 <div class="columns is-multiline is-marginless">
                   <div class="column is-full">
-                    <h1>Tecnología</h1>
+                    <h1 class="is-size-5">Tecnología</h1>
                   </div>
                   <div class="column is-full flex-sb">
                     <p class="font-light">Node.js</p>
@@ -101,7 +101,7 @@
               <div class="column is-half">
                 <div class="columns is-multiline is-marginless">
                   <div class="column is-full">
-                    <h1>Servicio</h1>
+                    <h1 class="is-size-5">Servicio</h1>
                   </div>
                   <div class="column flex-sb">
                     <p class="font-light">Heroku</p>
@@ -121,7 +121,7 @@
               <div class="column is-half">
                 <div class="columns is-multiline is-marginless">
                   <div class="column is-full">
-                    <h1>Tecnología</h1>
+                    <h1 class="is-size-5">Tecnología</h1>
                   </div>
                   <div class="column is-full flex-sb">
                     <p class="font-light">Vue.js</p>
@@ -146,7 +146,7 @@
               <div class="column is-half">
                 <div class="columns is-multiline is-marginless">
                   <div class="column is-full">
-                    <h1>Servicio</h1>
+                    <h1 class="is-size-5">Servicio</h1>
                   </div>
                   <div class="column flex-sb">
                     <p class="font-light">Netlify</p>
@@ -158,6 +158,84 @@
               </div>
             </div>
             <!-- Fin tecnologias y servicios para Aplicación Web (Dashboard) -->
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-marginless">
+        <div class="column is-full">
+          <div class="box">
+            <div class="columns is-marginless">
+              <div class="column">
+                <h2 class="box-title title is-5 font-bold">
+                  Herramientas utilizadas
+                </h2>
+              </div>
+            </div>
+            <!-- Inicio herramientas utilizadas -->
+            <div class="columns is-mobile is-multiline is-marginless">
+              <div class="column is-half">
+                <div class="columns is-multiline is-marginless">
+                  <div class="column is-full">
+                    <h1 class="is-size-5">Tecnología</h1>
+                  </div>
+                  <div class="column flex-sb is-full">
+                    <p class="font-light">Visual Studio Code</p>
+                  </div>
+                  <div class="column flex-sb is-full">
+                    <p class="font-light">Visual Studio para el ETL</p>
+                  </div>
+                  <div class="column flex-sb">
+                    <p class="font-light">Postman</p>
+                    <a href="https://www.getpostman.com/" target="_blank">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-half">
+                <div class="columns is-multiline is-marginless">
+                  <div class="column is-full"></div>
+                  <div class="column flex-sb"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin herramientas utilizadas -->
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-marginless">
+        <div class="column is-full">
+          <div class="box">
+            <div class="columns is-marginless">
+              <div class="column">
+                <h2 class="box-title title is-5 font-bold">API Docs</h2>
+              </div>
+            </div>
+            <!-- Inicio API Docs -->
+            <div class="columns is-mobile is-multiline is-marginless">
+              <div class="column is-half">
+                <div class="columns is-multiline is-marginless">
+                  <div class="column flex-sb is-full">
+                    <p class="font-light">Docs</p>
+                    <a
+                      href="https://documenter.getpostman.com/view/6495315/S1ENxJQQ"
+                      target="_blank"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-half">
+                <div class="columns is-multiline is-marginless">
+                  <div class="column is-full"></div>
+                  <div class="column flex-sb"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Fin API Docs -->
           </div>
         </div>
       </div>

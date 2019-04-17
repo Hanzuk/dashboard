@@ -21,8 +21,8 @@ export default {
   },
   data() {
     return {
-      customersGoal: 6800,
-      customersMin: 4000,
+      customersGoal: 9000,
+      customersMin: 5000,
       chartOptions: {
         chart: {
           id: 'customers-chart',
@@ -33,6 +33,25 @@ export default {
             dynamicAnimation: {
               enabled: true,
               speed: 1600
+            }
+          }
+        },
+        plotOptions: {
+          radialBar: {
+            startAngle: -135,
+            endAngle: 135,
+            dataLabels: {
+              name: {
+                fontSize: '16px',
+                color: undefined,
+                offsetY: 120
+              },
+              value: {
+                offsetY: 76,
+                fontSize: '22px',
+                color: undefined,
+                formatter: val => val + '%'
+              }
             }
           }
         },
@@ -84,6 +103,7 @@ export default {
     this.series = this.getCustomers.map(obj =>
       parseInt((obj.net_total * 100) / this.customersGoal).toFixed(0)
     )
+    // this.series = this.getCustomers.map(obj => obj.net_total)
   }
 }
 </script>
