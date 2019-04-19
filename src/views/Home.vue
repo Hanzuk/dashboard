@@ -57,7 +57,12 @@
                 <p class="box-title is-size-5-mobile is-size-4-desktop">
                   Clientes por sede
                 </p>
-                <p class="box-subtitle is-size-7">Mínimo: 5000 | Meta: 9000</p>
+                <p class="box-subtitle">
+                  <i class="fa fa-arrow-down text-danger"></i>5000
+                </p>
+                <p class="box-subtitle">
+                  <i class="fa fa-arrow-up text-success"></i>9000
+                </p>
               </div>
               <div class="column is-3-desktop is-paddingless">
                 <FilterCustomers />
@@ -73,7 +78,7 @@
                 <p class="box-title is-size-5-mobile is-size-4-desktop">
                   Gastos por sede
                 </p>
-                <p class="box-subtitle is-size-7">Gastos totales a la fecha</p>
+                <p class="box-subtitle">Gastos totales a la fecha</p>
               </div>
             </div>
             <ExpensesByHeadquarter />
@@ -106,11 +111,23 @@ export default {
     Customers,
     ExpensesByHeadquarter
   },
+  data() {
+    return {
+      total: this.getCustomers
+    }
+  },
   computed: {
-    ...mapGetters(['getMenuOpened'])
+    ...mapGetters(['getMenuOpened', 'getCustomers'])
   },
   methods: {
-    ...mapActions(['toggleMenu']),
+    ...mapActions([
+      'fetchCustomers',
+      'toggleMenu',
+      'fetchExpensesByHeadquarter',
+      'fetchUtility',
+      'fetchIncome',
+      'fetchExpensesByPeriod'
+    ]),
     getDate() {
       let date = new Intl.DateTimeFormat('es-CR', {
         year: 'numeric',
@@ -118,6 +135,13 @@ export default {
       }).format(new Date())
       return date[0].toUpperCase() + date.slice(1)
     }
+  },
+  created() {
+    this.fetchIncome()
+    this.fetchExpensesByPeriod()
+    this.fetchUtility()
+    this.fetchCustomers()
+    this.fetchExpensesByHeadquarter()
   }
 }
 </script>

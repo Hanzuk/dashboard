@@ -13,7 +13,8 @@ const getters = {
   getExpensesByPeriod: state => state.expensesByPeriod,
   getExpensesByHeadquarter: state => state.expensesByHeadquarter,
   getUtility: state => state.utility,
-  getCustomers: state => state.customers
+  getCustomers: state => state.customers,
+  getCustomersNT: state => state.customers[0].net_total
 }
 
 const actions = {

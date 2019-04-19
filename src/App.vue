@@ -163,7 +163,21 @@ body {
 }
 
 .box-subtitle {
+  display: inline;
+  margin-right: 8px;
+  font-size: 0.9rem;
   font-weight: 300;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.text-danger {
+  color: #e07e7c;
+}
+.text-success {
+  color: #67b7dc;
 }
 
 @media (max-width: 1024px) {

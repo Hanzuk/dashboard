@@ -7,7 +7,7 @@
 
 <script>
 import VueApexChart from 'vue-apexcharts'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Income',
@@ -103,12 +103,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getIncome'])
-  },
-  methods: {
-    ...mapActions(['fetchIncome'])
-  },
-  created() {
-    this.fetchIncome()
   },
   beforeUpdate() {
     this.chartOptions = {

@@ -7,7 +7,7 @@
 
 <script>
 import VueApexChart from 'vue-apexcharts'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ExpensesByHeadquarter',
@@ -65,12 +65,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getExpensesByHeadquarter'])
-  },
-  methods: {
-    ...mapActions(['fetchExpensesByHeadquarter'])
-  },
-  created() {
-    this.fetchExpensesByHeadquarter()
   },
   beforeUpdate() {
     this.chartOptions = {

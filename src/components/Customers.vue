@@ -12,7 +12,7 @@
 
 <script>
 import VueApexChart from 'vue-apexcharts'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Customers',
@@ -55,7 +55,7 @@ export default {
             }
           }
         },
-        labels: ['Sede 01']
+        labels: ['']
       },
       series: [0]
     }
@@ -63,17 +63,14 @@ export default {
   computed: {
     ...mapGetters(['getCustomers'])
   },
-  methods: {
-    ...mapActions(['fetchCustomers'])
-  },
-  created() {
-    this.fetchCustomers()
-  },
   beforeUpdate() {
     if (this.getCustomers[0].net_total > this.customersGoal) {
       this.chartOptions = {
         labels: this.getCustomers.map(
-          obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
+          obj =>
+            `${obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)} - ${
+              obj.net_total
+            }`
         ),
         colors: ['#67b7dc']
       }
@@ -85,7 +82,10 @@ export default {
     ) {
       this.chartOptions = {
         labels: this.getCustomers.map(
-          obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
+          obj =>
+            `${obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)} - ${
+              obj.net_total
+            }`
         ),
         colors: ['#dcaf67']
       }
@@ -94,16 +94,22 @@ export default {
     if (this.getCustomers[0].net_total < this.customersMin) {
       this.chartOptions = {
         labels: this.getCustomers.map(
-          obj => obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)
+          obj =>
+            `${obj.headquarter[0].toUpperCase() + obj.headquarter.slice(1)} - ${
+              obj.net_total
+            }`
         ),
         colors: ['#dc6967']
       }
     }
 
-    this.series = this.getCustomers.map(obj =>
-      parseInt((obj.net_total * 100) / this.customersGoal).toFixed(0)
-    )
-    // this.series = this.getCustomers.map(obj => obj.net_total)
+    this.series = this.getCustomers.map(obj => {
+      if (obj.net_total > this.customersGoal) {
+        return 100
+      } else {
+        return parseInt((obj.net_total * 100) / this.customersGoal).toFixed(0)
+      }
+    })
   }
 }
 </script>
